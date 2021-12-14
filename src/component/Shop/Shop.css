@@ -1,0 +1,25 @@
+.container
+{
+    max-width:1040px;
+    margin:0 auto;
+}
+.shop-container 
+{
+    display:flex;
+    padding-top:8px;
+}
+.product-container
+{
+    padding-left:25px;
+    padding-right:8px;
+    width:70%;
+    border-right:1px solid gray;
+}
+.cart-container
+{
+    padding:8px;
+}
+.cart-container h2 
+{
+    text-align:center;
+}

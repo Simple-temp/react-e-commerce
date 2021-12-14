@@ -1,0 +1,60 @@
+.header img 
+{
+    width:240px;
+    margin-top:20px;
+}
+:focus
+{
+    outline: none;
+}
+.container
+{
+    max-width:1040px;
+    margin:0 auto;
+}
+.logo
+{
+    background-color: #fff;
+    text-align:center;
+}
+.header 
+{
+    background-color: #000;
+}
+.inputValue 
+{
+    margin-right:20px;
+}
+.inputArea
+{
+    text-align:left;
+    padding:9px;
+    display:flex;
+}
+.inputArea input 
+{
+    padding:6px;
+    width:600px;
+}
+.header nav 
+{
+    margin-top:14px;
+    line-height:50px;
+}
+nav a 
+{
+    text-decoration:none;
+    color:#fff;
+    padding:9px;
+    margin-right:25px;
+    font-size:21px;
+    transition:.2s;
+    -webkit-transition:.2s;
+    -moz-transition:.2s;
+    -ms-transition:.2s;
+    -o-transition:.2s;
+}
+nav a:hover 
+{
+    background-color: rgb(161, 161, 161);
+}

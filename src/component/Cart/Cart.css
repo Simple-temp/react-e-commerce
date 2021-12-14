@@ -1,0 +1,23 @@
+.btn
+{
+    background-color: rgb(255, 102, 0);
+    color:rgb(0, 0, 0);
+    padding:7px 15px;
+    font-weight:400;
+    font-size:17px;
+    border-radius:7px;
+    -webkit-border-radius:7px;
+    -moz-border-radius:7px;
+    -ms-border-radius:7px;
+    -o-border-radius:7px;
+    cursor:pointer;
+}
+.cart-box{
+    padding:0 0 0 10px;
+}
+.cart
+{
+    color:rgb(255, 102, 0);
+    font-size:25px;
+    cursor:pointer;
+}
