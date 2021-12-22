@@ -2,14 +2,15 @@ import React from 'react';
 import './Cart.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
 const Cart = (props) => {
     const cart = props.cart;
-    console.log(cart);
+    // console.log(cart);
     let total = 0;
     for(var i=0; i<cart.length; i++)
     {
         var product = cart[i];
-        total = total + product.price;
+        total = total + product.price * product.quantity;
     }
     console.log(product);
 
@@ -38,7 +39,9 @@ const Cart = (props) => {
             <p>Shipping Chagrge : {shipping.toFixed(2)}</p>
             <p>Tax + Vat : {tax.toFixed(2)}</p>
             <p>Total : {finalPrice}</p>
-            <button className="btn">Review Order</button>
+            {
+                props.children
+            }
         </div>
     );
 };
