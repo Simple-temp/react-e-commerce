@@ -11,7 +11,7 @@ const Review = () => {
     const [cart, setCart] = useState([])
     const [PlaceOrder,setPlaceOrder] = useState(false);
 
-    const clearItem = () =>
+    const ProceedCheckout = () =>
     {
         setCart([]);
         setPlaceOrder(true);
@@ -52,7 +52,7 @@ const Review = () => {
                 </div>
                 <div className="col-lg-6">
                     <Cart cart={cart}>
-                    <button className="btn"> <Link to="/review" onClick={clearItem}>Place Orderd</Link></button>
+                    <button className="btn"> <Link to="/shippment" onClick={ProceedCheckout}>Proceed Checkout</Link></button>
                     </Cart>
                 </div>
             </div>
