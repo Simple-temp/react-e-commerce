@@ -3,20 +3,23 @@ import { clearTheCart, getStoredCart , removeFromDb } from '../../utilities/fake
 import jsonData from '../../fakeData/products.json';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import happy from '../../img/giphy.gif';
+import { userCOntext } from '../../App';
+import { useContext } from 'react';
 
 const Review = () => {
-
+    const [LoggedInUser] = useContext( userCOntext);
     const [cart, setCart] = useState([])
     const [PlaceOrder,setPlaceOrder] = useState(false);
+    const Navigate = useNavigate()
 
-    const ProceedCheckout = () =>
-    {
-        setCart([]);
-        setPlaceOrder(true);
-        clearTheCart();
-    }
+    // const ProceedCheckout = () =>
+    // {
+    //     setCart([]);
+    //     setPlaceOrder(true);
+    //     clearTheCart();
+    // }
 
     const RemoveItem = (productkey) =>
     {
@@ -52,7 +55,7 @@ const Review = () => {
                 </div>
                 <div className="col-lg-6">
                     <Cart cart={cart}>
-                    <button className="btn"> <Link to="/shippment" onClick={ProceedCheckout}>Proceed Checkout</Link></button>
+                    <button className="btn" onClick={()=>Navigate( LoggedInUser.email ? "/shippment" : "/login")}>Proceed Checkout</button>
                     </Cart>
                 </div>
             </div>
