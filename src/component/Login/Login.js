@@ -110,7 +110,9 @@ signInWithPopup(auth, FbProvider)
         userInfo.error = '';
         userInfo.success = true;
         setUser(userInfo);
-        update(user.name)
+        update(user.name);
+        setLoggedInUser(userInfo)
+        navigate(from, { replace: true });
       })
       .catch(error => {
         const userInfo = {...user}
