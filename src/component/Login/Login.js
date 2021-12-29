@@ -55,6 +55,8 @@ function Login() {
       photo : photoURL
     }
     setUser(signIn);
+    setLoggedInUser(signIn)
+    navigate(from, { replace: true });
   })
   }
 
@@ -72,6 +74,7 @@ function Login() {
         photo : ''
       }
       setUser(SignOut);
+      setLoggedInUser(SignOut)
     })
   }
 
@@ -183,7 +186,7 @@ signInWithPopup(auth, FbProvider)
   return (
     <div className="text-center">
         {user.isIt ? <button onClick={clickOut} >Sign out</button> :
-        <button onClick={click} >Sign in</button>
+        <button onClick={click} >Sign in with google</button>
         }
         <button onClick={fbAuth} >Sign in with facebook</button>
         {
