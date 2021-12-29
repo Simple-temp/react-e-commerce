@@ -20,7 +20,7 @@ function App() {
   return (
     <userCOntext.Provider value={[LoggedInUser, setLoggedInUser]}>
       <Router>
-        <h3> name : {LoggedInUser.name}</h3>
+        <h3> Email : {LoggedInUser.email}</h3>
       <Header></Header>
 
         <div className="container">
