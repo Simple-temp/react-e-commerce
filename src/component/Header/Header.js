@@ -2,9 +2,11 @@ import {Link} from 'react-router-dom';
 import React from 'react';
 import logo from '../../img/logo.png';
 import './Header.css';
+import { useContext } from 'react';
+import { userCOntext } from '../../App';
 
 const Header = () => {
-
+    const [LoggedInUser, setLoggedInUser] = useContext ( userCOntext )
     return (
         <div className="header">
             <div className="logo">
@@ -15,6 +17,7 @@ const Header = () => {
                     <Link to="/">Shop</Link>
                     <Link to="/review">Review</Link>
                     <Link to="/management">Management</Link>
+                    <button onClick={()=>setLoggedInUser({})} >Sign Out</button>
                 </nav>
                 <div className="inputArea">
                     <div className="inputBox">
