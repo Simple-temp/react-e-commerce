@@ -2,11 +2,9 @@ import {Link} from 'react-router-dom';
 import React from 'react';
 import logo from '../../img/logo.png';
 import './Header.css';
-import { userCOntext } from '../../App';
-import { useContext } from 'react';
 
 const Header = () => {
-    const [LoggedInUser] = useContext( userCOntext);
+
     return (
         <div className="header">
             <div className="logo">
@@ -16,7 +14,7 @@ const Header = () => {
                 <nav>
                     <Link to="/">Shop</Link>
                     <Link to="/review">Review</Link>
-                    <Link to={ LoggedInUser.email ? "/management" : "/login"}>Management</Link>
+                    <Link to="/management">Management</Link>
                 </nav>
                 <div className="inputArea">
                     <div className="inputBox">

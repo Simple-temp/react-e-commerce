@@ -5,11 +5,9 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import { useNavigate } from 'react-router-dom';
 import happy from '../../img/giphy.gif';
-import { userCOntext } from '../../App';
-import { useContext } from 'react';
+
 
 const Review = () => {
-    const [LoggedInUser] = useContext( userCOntext);
     const [cart, setCart] = useState([])
     const [PlaceOrder,setPlaceOrder] = useState(false);
     const Navigate = useNavigate()
@@ -55,7 +53,7 @@ const Review = () => {
                 </div>
                 <div className="col-lg-6">
                     <Cart cart={cart}>
-                    <button className="btn" onClick={()=>Navigate( LoggedInUser.email ? "/shippment" : "/login")}>Proceed Checkout</button>
+                    <button className="btn" onClick={()=>Navigate("/shippment")}>Proceed Checkout</button>
                     </Cart>
                 </div>
             </div>

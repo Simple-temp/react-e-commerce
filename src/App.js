@@ -27,10 +27,14 @@ function App() {
         <Routes>
                 <Route path="/" element={<Shop/>}/>
                 <Route path="/review" element={<Review/>}/>
-                <Route path="/management" element={<Management/>}/>
+                <Route path="/management" element={ <PrivateRoute>
+                  <Management/>
+                </PrivateRoute> }/>
                 <Route path="/product/:productkey" element={<ProductDetails/>}/>
+                <Route path="/shippment" element={ <PrivateRoute>
+                  <Shippment/>
+                </PrivateRoute> }/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/shippment" element={<Shippment/>}/>
                 <Route path="*" element={<Notfound/>}/>
         </Routes>
         </div>

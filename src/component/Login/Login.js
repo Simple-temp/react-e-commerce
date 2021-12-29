@@ -4,6 +4,7 @@ import { GoogleAuthProvider , getAuth , signInWithPopup , signOut , createUserWi
 import  firebaseConfig  from "./firebaseConfig";
 import { useContext } from 'react';
 import { userCOntext } from '../../App';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 initializeApp( firebaseConfig );
@@ -22,12 +23,16 @@ function Login() {
     photo : '',
     password : '',
     error : '',
-    success : ''
+    success : false
   })
  
 /*This is Api context */   
 
   const [LoggedInUser, setLoggedInUser] = useContext(userCOntext)
+  let navigate = useNavigate();
+  let location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
 
 /*This is google and facebook author provider*/ 
 
@@ -115,13 +120,14 @@ signInWithPopup(auth, FbProvider)
     if (user.email && user.password)
     {
         const auth = getAuth();
-        signInWithEmailAndPassword(auth, user.email, user.password)
+      signInWithEmailAndPassword(auth, user.email, user.password)
             .then((createuser) => {
                 const userInfo = {...user}
                 userInfo.error = '';
                 userInfo.success = true;
                 setUser(userInfo);
                 setLoggedInUser(userInfo)
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 const userInfo = {...user}
@@ -207,11 +213,13 @@ signInWithPopup(auth, FbProvider)
           <br/>
           <input type="submit" value={newuser ? "sign up" : "sign in"} />
         </form>
+  
         {
-          user.error &&  <p>This account has been already taken</p>
+          user.error && <p style={{color:"red"}}>This email already taken</p>
         }
+
         {
-          user.success &&  <p>User { newuser ? "Created" : "Logged In"} SuccessFully</p>
+          user.success &&  <p style={{color:"green"}}>User { newuser ? "Created" : "Logged In"} SuccessFully</p>
         }
     </div>
   );
