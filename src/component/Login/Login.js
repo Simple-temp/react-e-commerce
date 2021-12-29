@@ -23,7 +23,7 @@ function Login() {
     photo : '',
     password : '',
     error : '',
-    success : false
+    success : false,
   })
  
 /*This is Api context */   
@@ -102,7 +102,7 @@ signInWithPopup(auth, FbProvider)
     {
       const auth = getAuth();
     createUserWithEmailAndPassword(auth, user.email, user.password)
-      .then((createuser) => {
+      .then((res) => {
         const userInfo = {...user}
         userInfo.error = '';
         userInfo.success = true;
@@ -121,18 +121,18 @@ signInWithPopup(auth, FbProvider)
     {
         const auth = getAuth();
       signInWithEmailAndPassword(auth, user.email, user.password)
-            .then((createuser) => {
+            .then((res) => {
                 const userInfo = {...user}
-                userInfo.error = '';
-                userInfo.success = true;
+                // userInfo.error = '';
+                // userInfo.success = true;
                 setUser(userInfo);
                 setLoggedInUser(userInfo)
                 navigate(from, { replace: true });
             })
             .catch((error) => {
                 const userInfo = {...user}
-                userInfo.error = error.message;
-                userInfo.success = false ;
+                // userInfo.error = error.message;
+                // userInfo.success = false ;
                 setUser(userInfo)
             });
     
