@@ -1,0 +1,13 @@
+.inputField
+{
+    margin:14px 0;
+    padding:7px;
+    border-radius:50px;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    -ms-border-radius:50px;
+    -o-border-radius:50px;
+    border:1px solid #000;
+    font-weight:bold;
+    color:rgb(0, 110, 255);
+}
