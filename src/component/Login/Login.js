@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider , getAuth , signInWithPopup , signOut , createUserWithEmailAndPassword , signInWithEmailAndPassword , updateProfile ,FacebookAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider , getAuth , signInWithPopup , signOut , createUserWithEmailAndPassword , signInWithEmailAndPassword , updateProfile ,FacebookAuthProvider , sendEmailVerification , sendPasswordResetEmail } from "firebase/auth";
 import  firebaseConfig  from "./firebaseConfig";
 import { useContext } from 'react';
 import { userCOntext } from '../../App';
@@ -113,6 +113,7 @@ signInWithPopup(auth, FbProvider)
         update(user.name);
         setLoggedInUser(userInfo)
         navigate(from, { replace: true });
+        mailVarification()
       })
       .catch(error => {
         const userInfo = {...user}
@@ -182,7 +183,31 @@ signInWithPopup(auth, FbProvider)
         console.log(error);
     });
   }
-
+/*mail varification*/
+const mailVarification = () =>
+{
+  const auth = getAuth();
+  sendEmailVerification(auth.currentUser)
+    .then(() => {
+      // Email verification sent!
+      // ...
+    })
+}
+/*reset password mail*/
+const resetPassword = (email) =>
+{
+  const auth = getAuth();
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      // Password reset email sent!
+      // ..
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+}
 /*This is our output*/
 
   return (
@@ -218,7 +243,7 @@ signInWithPopup(auth, FbProvider)
           <br/>
           <input type="submit" value={newuser ? "sign up" : "sign in"} />
         </form>
-  
+        <button onClick={()=>resetPassword(user.email)} >forgate password</button>
         {
           user.error && <p style={{color:"red"}}>This email already taken</p>
         }
