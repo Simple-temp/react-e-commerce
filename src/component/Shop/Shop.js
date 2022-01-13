@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import jsonData from '../../fakeData/products.json';
 import { addToDb , getStoredCart} from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Products from '../Products/Products';
@@ -7,19 +6,28 @@ import './Shop.css';
 import { Link } from 'react-router-dom';
 
 const Shop = () => {
-    const showData = jsonData.slice(0,5);
-    const [products,setProducts] = useState(showData);
+    // const showData = jsonData.slice(0,5);
+    const [products,setProducts] = useState([]);
     const [cart,setCart] = useState([]);
+
+    useEffect(()=>{
+        fetch(`http://localhost:4000/getProduct`)
+        .then( res => res.json())
+        .then( data => setProducts(data))
+    },[])
 
     useEffect(() => {
         const saveCart = getStoredCart();
         const productkey = Object.keys(saveCart);
-        const previusCart = productkey.map(pdkey =>{
-            const product = jsonData.find(pd => pd.key === pdkey);
-            product.quantity = saveCart[pdkey];
-            return product;
+        fetch(`http://localhost:4000/postproductByKey`,{
+            method:"POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productkey)
         })
-        setCart(previusCart);
+        .then (res => res.json())
+        .then (data => setCart(data))
     }, [])
 
     const addProduct = (product) => 

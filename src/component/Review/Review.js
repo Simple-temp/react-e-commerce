@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { clearTheCart, getStoredCart , removeFromDb } from '../../utilities/fakedb';
-import jsonData from '../../fakeData/products.json';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import { useNavigate } from 'react-router-dom';
@@ -12,13 +11,6 @@ const Review = () => {
     const [PlaceOrder,setPlaceOrder] = useState(false);
     const Navigate = useNavigate()
 
-    // const ProceedCheckout = () =>
-    // {
-    //     setCart([]);
-    //     setPlaceOrder(true);
-    //     clearTheCart();
-    // }
-
     const RemoveItem = (productkey) =>
     {
         const newCart = cart.filter(pd => pd.key !== productkey);
@@ -29,12 +21,16 @@ const Review = () => {
     useEffect(() => {
         const saveCart = getStoredCart();
         const productkeys = Object.keys(saveCart);
-        const cartproducts = productkeys.map ( key => {
-            const product = jsonData.find(pd => pd.key === key);
-            product.quantity = saveCart[key];
-            return product;
-        });
-        setCart(cartproducts);
+
+        fetch(`http://localhost:4000/postproductByKey`,{
+            method:"POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productkeys)
+        })
+        .then (res => res.json())
+        .then (data => setCart(data))
     }, [])
     
     let thankYou;
