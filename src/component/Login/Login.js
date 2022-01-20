@@ -56,8 +56,20 @@ function Login() {
     }
     setUser(signIn);
     setLoggedInUser(signIn)
+    authToken()
     navigate(from, { replace: true });
   })
+  }
+
+  const authToken = () =>
+  {
+      const auth = getAuth(); 
+      auth.currentUser.getIdToken(/* forceRefresh */auth,true).then(function(idToken) {
+          console.log(idToken);
+          sessionStorage.setItem("token", idToken);
+        }).catch(function(error) {
+          // Handle error
+        });
   }
 
 /*This is sign out or click out function*/  

@@ -9,12 +9,18 @@ const Shop = () => {
     // const showData = jsonData.slice(0,5);
     const [products,setProducts] = useState([]);
     const [cart,setCart] = useState([]);
+    const [search,setSearch] = useState("")
 
     useEffect(()=>{
-        fetch(`http://localhost:4000/getProduct`)
+        fetch(`http://localhost:4000/getProduct?search=`+search)
         .then( res => res.json())
         .then( data => setProducts(data))
-    },[])
+    },[search])
+
+    const searchInput = (event) =>{
+        setSearch(event.target.value);
+        console.log(event.target.value)
+    }
 
     useEffect(() => {
         const saveCart = getStoredCart();
@@ -53,6 +59,7 @@ const Shop = () => {
     } 
     return (
         <div className="container">
+            <input type="text" placeholder='Search..' onBlur={searchInput} />
             <div className="shop-container">
                 <div className="product-container">
                     <ul>

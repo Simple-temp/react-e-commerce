@@ -6,7 +6,8 @@ import { userCOntext } from '../../App';
 const PrivateRoute = ({ children }) => {
     const [LoggedInUser] = useContext( userCOntext);
     const location = useLocation();
-    if(!LoggedInUser.email)
+    console.log(sessionStorage.getItem("token"))
+    if(!LoggedInUser.email && !sessionStorage.getItem("token"))
     {
         return <Navigate to="/login" state={{ from: location }} replace />
     }
